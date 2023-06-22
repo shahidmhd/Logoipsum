@@ -1,0 +1,90 @@
+
+.single-content{
+    padding: 112px 0;
+    text-align: center;
+}
+.single-box p{
+    color: #8D8D8D;
+    line-height: 1.9;
+}
+.single-box h3{
+    font-size: 16px;
+    font-weight: 700px;
+    color: #8D8D8D;
+    margin-top: 20px;
+}
+.single-box .card-area i{
+    color:#8D8D8D;
+
+    font-size: 20px;
+    margin-right: 10px;
+}
+.single-box ul li{
+    text-decoration: none;
+    color: #8D8D8D;
+    line-height: 2.5;
+    font-weight: 150;
+    font-weight: bold;
+    list-style-type: none;
+}
+
+.single-box h2{
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 30px;
+}
+.socials i{
+    font-size: 18px;
+    margin-right: 20px;
+
+}
+@media (max-width:767px){
+    .single-box{
+        margin-bottom:50px;
+    }
+}
+@media (min-width:768px)and(max-width:991px){
+    .single-box{
+        margin-bottom:50px;
+    }
+}
+h2:hover{
+
+border-bottom: 2px solid rgb(29, 104, 202);
+}
+li:hover{
+    text-decoration: underline;
+}
+
+.btn-store {
+    color: #ffffff;
+    background-color:black;
+    min-width: 190px;
+    padding: 12px 20px ;
+    border-color: #050404;
+    height: 70px;
+  }
+  
+  .btn-store:focus, 
+  .btn-store:hover {
+    color: #ffffff !important;
+    background-color: #168eea;
+    border-color: #168eea !important;
+  }
+  
+  .btn-store .btn-label, 
+  .btn-store .btn-caption {
+    display: block;
+    text-align: left;
+    line-height: 1;
+  }
+  
+  .btn-store .btn-caption {
+    font-size: 24px;
+  }
+  .custom-icon {
+    width: 40px; /* Set the desired width */
+    height: 40px; /* Set the desired height */
+    color: blue; /* Set the desired color */
+  }
