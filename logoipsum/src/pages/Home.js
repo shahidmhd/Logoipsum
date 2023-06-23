@@ -8,17 +8,17 @@ import Middlepart from '../component/Middlepart'
 import Footer from '../component/Footer'
 import { useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
-import { getCartCount } from '../apicalls/Users'
+
 
 
 function Home({cart, setCart}) {
     const navigate = useNavigate();
   
-  useEffect(async()=>{
+  useEffect(()=>{
     if(!localStorage.getItem('token')){
         navigate('/login')
     }
-  },[])
+  })
     return (
       <div className="App" style={{ overflowX: 'hidden' }}>
         <Announce />

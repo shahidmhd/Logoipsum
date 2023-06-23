@@ -3,7 +3,6 @@ import instance from "./axiosinstance";
 
 export const RegisterUser = async (payload) => {
     try {
-        console.log("nn", payload);
         const response = await instance.post('/api/users/signup', payload)
         return response.data
     } catch (err) {
@@ -59,7 +58,6 @@ export const getcartproduct = async () => {
 export const deletecart = async (cartid) => {
     try {
         const response = await instance.get(`/api/users/deletecart/${cartid}`)
-        console.log(response, "deletteresponse");
         return response.data
     } catch (err) {
         return err.message
@@ -67,19 +65,19 @@ export const deletecart = async (cartid) => {
 }
 
 
-export const stockupdate=async(ProductId)=>{
-    try{
-   const response= await instance.get(`/api/users/updatestock/${ProductId}`)
-   return response.data
-    }catch(err){
+export const stockupdate = async (ProductId) => {
+    try {
+        const response = await instance.get(`/api/users/updatestock/${ProductId}`)
+        return response.data
+    } catch (err) {
         return err.message
     }
 }
 
-export const incrementcount=async(ProductId)=>{
-    try{
+export const incrementcount = async (ProductId) => {
+    try {
         await instance.get(`/api/users/incrementstock/${ProductId}`)
-       }catch(err){
-           return err.message
-       }
+    } catch (err) {
+        return err.message
+    }
 }

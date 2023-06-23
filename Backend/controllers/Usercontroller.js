@@ -26,10 +26,8 @@ export default {
     },
     LoginUser: async (req, res) => {
         try {
-            console.log(req.body)
             const user = await User.findOne({ email: req.body.email }).exec();
             if (user) {
-                console.log("user found", user)
                 const validaPassword = await bcrypt.compare(req.body.password, user.password);
                 if (!validaPassword) {
                     throw new Error("Invalid password !");
@@ -81,12 +79,9 @@ export default {
             } else {
                 user.cart.push(newItem);
                 await user.save();
-
-                console.log('Item added to cart successfully');
                 res.send({ success: true, message: 'Item added to cart successfully' });
             }
         } catch (error) {
-            console.log('Error adding item to cart:', error);
             res.send({ success: false, message: 'Error adding item to cart' });
         }
 
@@ -122,7 +117,6 @@ export default {
     cartCount: async (req, res) => {
         try {
             const userId = req.body.userId;
-            console.log(userId)
             const user = await User.findById(userId);
             const cartCount = user.cart.length;
             res.status(200).json({
@@ -139,7 +133,6 @@ export default {
     cartproduct: async (req, res) => {
         try {
             const userId = req.body.userId;
-            console.log(userId)
             const user = await User.findById(userId);
             const cartproduct = user.cart
             res.status(200).json({
@@ -155,15 +148,12 @@ export default {
     },
     deletecart: async (req, res) => {
         const cartId = req.params.id
-        console.log(cartId, "bjhyui6i");
         const userId = req.body.userId;
 
 
         let response = await User.findByIdAndUpdate(userId, {
             $pull: { cart: { _id: cartId } }
         }, { new: true })
-
-        console.log(response, "hhhhhhh");
 
         if (response) {
             return res.json({

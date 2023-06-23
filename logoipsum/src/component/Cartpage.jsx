@@ -75,8 +75,7 @@ function Cartpage() {
                                                                     <i className="ri-subtract-line"></i>
                                                                 </button>
 
-                                                                <input id="form1" min="0" name="quantity" type="number"
-                                                                    className="form-control form-control-sm" />
+                                                               <label className='btn btn-outline-dark text-dark'>{item.quantity}</label>
 
                                                                 <button className="btn  px-2"
                                                                 >

@@ -2,6 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Navbar({ cart }) {
 
@@ -15,13 +16,13 @@ function Navbar({ cart }) {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
-                            <h5 className="brand-name">logoipsum</h5>
+                            <h5 className="brand-name text-dark fs-3">logoipsum</h5>
                         </div>
-                        <div className="col-md-5 my-auto">
+                        <div className="col-md-5 my-auto ">
                             <form role="search">
                                 <div className="input-group">
                                     <input type="search" placeholder="Search your product" className="form-control" />
-                                    <button className="btn bg-white border" type="submit">
+                                    <button className="btn bg-white text-primary border">
                                         <i className="ri-search-line"></i>
                                     </button>
                                 </div>
@@ -29,20 +30,22 @@ function Navbar({ cart }) {
                         </div>
                         <div className="col-md-5 my-auto">
                             <ul className="nav justify-content-end">
-
                                 <li className="nav-item">
                                     <Link className="nav-link" to='/cart'>
-                                        <i className="ri-shopping-bag-line"></i> Cart ({cart})
+                                        <i className="ri-shopping-bag-line fs-4"></i>
+                                        {cart > 0 && (
+                                            <span className="badge bg-danger align-middle ms-1">{cart}</span>
+                                        )}
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to='/'>
-                                        <i className="ri-heart-line"></i>
+                                        <i className="ri-heart-line fs-4"></i>
                                     </Link>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <li className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i className="ri-user-fill"></i>Username
+                                        <i className="ri-user-fill fs-4"></i>
                                     </li>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><Link className="dropdown-item" to='/'><i className="fa fa-user"></i> Profile</Link></li>
