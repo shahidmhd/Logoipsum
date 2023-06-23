@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./Cart.css"
-import { deletecart, getcartproduct, incrementcount } from '../apicalls/Users'
+import { deletecart, getCartCount, getcartproduct, incrementcount } from '../apicalls/Users'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-function Cartpage() {
+
+
+
+function Cartpage({setCart}) {
 
     const [cartproduct, setcartproduct] = useState([])
     const [deleteItem, setDelete] = useState(false)
@@ -18,7 +21,10 @@ function Cartpage() {
 
     }, [deleteItem])
 
-
+    const getCart = async () => {
+        const response = await getCartCount();
+        setCart(response.data);
+    }
 
 
     const incrementstock = async (productId) => {
@@ -26,9 +32,10 @@ function Cartpage() {
     }
 
     const deleteproduct = async (cartid, productId) => {
+        incrementstock(productId)
         const response = await deletecart(cartid)
         if (response.status) {
-            incrementstock(productId)
+            getCart();
             setDelete(!deleteItem)
             toast.success("item deleted");
         }

@@ -1,10 +1,10 @@
 import React from 'react'
 import Cartpage from '../component/Cartpage'
 
-function Cart() {
+function Cart({setCart}) {
   return (
     <>
-    <Cartpage/>
+    <Cartpage setCart={setCart}/>
     </>
   )
 }

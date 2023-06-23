@@ -150,11 +150,9 @@ export default {
         const cartId = req.params.id
         const userId = req.body.userId;
 
-
         let response = await User.findByIdAndUpdate(userId, {
             $pull: { cart: { _id: cartId } }
         }, { new: true })
-
         if (response) {
             return res.json({
                 status: true,
@@ -168,25 +166,28 @@ export default {
         }
 
     },
-    DecrementCount: async (req,res) => {
-        const productId=req.params.id
+    DecrementCount: async (req, res) => {
+        const productId = req.params.id
         await Product.updateOne(
             { _id: productId },
             { $inc: { stock: -1 } }
         );
         res.send({
-            status:true
+            status: true
         })
 
     },
-    IncrementCount: async (req,res) => {
-        const productId=req.params.id
-        const userId= req.body.userId;
-        const product = await User.findOne({ _id: userId }, { cart: { $elemMatch: {  productId : productId } } })
-        console.log(product,"quaantity");
+    IncrementCount: async (req, res) => {
+        const productId = req.params.id
+        const userId = req.body.userId;
+        const product = await User.findOne(
+            { _id: userId },
+            { cart: { $elemMatch: { productId: productId } } }
+        );
+        const number = product.cart[0].quantity
         await Product.updateOne(
             { _id: productId },
-            { $inc: { stock: 1 } }
+            { $inc: { stock: number } }
         );
 
     },
