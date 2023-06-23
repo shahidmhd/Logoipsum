@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 const userchema=new mongoose.Schema({
     name: {
@@ -18,7 +18,9 @@ const userchema=new mongoose.Schema({
         image: { type: String},
         name: { type: String},
         price: { type: Number},
-        stock: { type: Number}
+        stock: { type: Number},
+        quantity:{type:Number},
+        productId:{type:Types.ObjectId}
       }]
 },{
     timestamps:true

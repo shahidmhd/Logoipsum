@@ -16,11 +16,9 @@ function Signuppage() {
 
     const submit=async(data)=>{
         try{
-         console.log('hii');
          const response=await RegisterUser(data)
          if(response.success){
             toast.success(response.message);
-            console.log(response);
             setTimeout(()=>{
                 navigate('/login');
                }, 2000);
@@ -43,7 +41,7 @@ function Signuppage() {
                         <img
                             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                             className="img-fluid"
-                            alt="Phone image"
+                            alt="Phone illustration"
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">

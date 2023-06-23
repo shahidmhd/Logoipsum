@@ -11,8 +11,8 @@ function Mostselling() {
             <div style={{ width: '15.5rem' }}>
               <p className='fw-bold fs-3'>classified <br />product on<br />the week</p>
             </div>
-            <div className='px-3 pb-3 pt-3 d-flex' style={{justifyContent: 'space-between'}}>
-              <i className="ri-arrow-left-s-line fw-bolder fs-2 rounded-circle py-1 px-2 border" style={{borderRadius: '10px'}}></i>
+            <div className='px-3 pb-3 pt-3 d-flex' style={{ justifyContent: 'space-between' }}>
+              <i className="ri-arrow-left-s-line fw-bolder fs-2 rounded-circle py-1 px-2 border" style={{ borderRadius: '10px' }}></i>
               <i className="ri-arrow-right-s-line fw-bolder fs-2 rounded-circle py-1 px-2 border"></i>
             </div>
             <div className='d-flex px-1 pt-4 justify-content-center'>

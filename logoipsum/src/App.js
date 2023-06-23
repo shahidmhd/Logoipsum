@@ -13,10 +13,14 @@ import { getCartCount } from './apicalls/Users';
 
 
 function App() {
-  const [cart, setCart] = useState();
-  useEffect(async () => {
-    const response = await getCartCount();
-    setCart(response.data);
+  const [cart,setCart] = useState(0);
+  useEffect(() => {
+    const getcart=async()=>{
+      const response = await getCartCount();
+      setCart(response.data);
+    }
+    getcart()
+   
   }, []);
   return (
 
@@ -26,7 +30,7 @@ function App() {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/' element={<Home cart={cart} setCart={setCart} />} />
-          <Route exact path='/cart' element={<Cart cart={cart} setCart={setCart} />} />
+          <Route exact path='/cart' element={<Cart setCart={setCart}/>} />
         </Routes>
       </Router>
     </div>

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { getCartCount } from '../apicalls/Users'
 
-function Navbar({cart}) {
-    
+function Navbar({ cart }) {
+
 
     const navigate = useNavigate()
-    
+
     return (
 
         <div className="main-navbar shadow-sm sticky-top">
@@ -42,18 +41,18 @@ function Navbar({cart}) {
                                     </Link>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <Link className="nav-link dropdown-toggle" to='/' id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i className="fa fa-user"></i> Username
-                                    </Link>
+                                    <li className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i className="ri-user-fill"></i>Username
+                                    </li>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><Link className="dropdown-item" to='/'><i className="fa fa-user"></i> Profile</Link></li>
                                         <li><Link className="dropdown-item" to='/'><i className="fa fa-list"></i> My Orders</Link></li>
                                         <li><Link className="dropdown-item" to='/'><i className="fa fa-heart"></i> My Wishlist</Link></li>
                                         <li><Link className="dropdown-item" to='/'><i className="fa fa-shopping-cart"></i> My Cart</Link></li>
-                                        <li><p style={{ cursor: 'pointer' }} onClick={() => {
+                                        <li><Link style={{ cursor: 'pointer' }} onClick={() => {
                                             localStorage.removeItem('token')
                                             navigate('/login')
-                                        }} className="dropdown-item" ><i className="fa fa-sign-out"></i> Logout</p></li>
+                                        }} className="dropdown-item" ><i className="fa fa-sign-out"></i> Logout</Link></li>
                                     </ul>
                                 </li>
                             </ul>

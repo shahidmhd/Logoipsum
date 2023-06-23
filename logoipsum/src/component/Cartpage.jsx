@@ -1,6 +1,41 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import "./Cart.css"
-function Cartpage({cart}) {
+import { deletecart, getcartproduct, incrementcount } from '../apicalls/Users'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+function Cartpage() {
+
+    const [cartproduct, setcartproduct] = useState([])
+    const [deleteItem, setDelete] = useState(false)
+
+    useEffect(() => {
+        const getProduct = async () => {
+            const cartproduct = await getcartproduct()
+            setcartproduct(cartproduct.data)
+        }
+        getProduct()
+
+    }, [deleteItem])
+
+ 
+
+
+    const incrementstock=async(productId)=>{
+           await incrementcount(productId)
+    }
+
+    const deleteproduct = async (cartid,productId) => {
+        const response = await deletecart(cartid)
+        if (response.status) {
+            incrementstock(productId)
+            setDelete(!deleteItem)
+            toast.success("item deleted");
+        }
+
+    }
+
+
 
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: '#d2c9ff' }} >
@@ -15,52 +50,61 @@ function Cartpage({cart}) {
                                         <div className="p-5">
                                             <div className="d-flex justify-content-between align-items-center mb-5">
                                                 <h1 className="fw-bold mb-0 text-black">Cart page</h1>
-                                                <h6 className="mb-0 text-muted">{cart} items </h6>
+                                                {/* <h6 className="mb-0 text-muted"></h6> */}
                                             </div>
                                             <hr className="my-4" />
 
-                                            <div className="row mb-4 d-flex justify-content-between align-items-center">
-                                                <div className="col-md-2 col-lg-2 col-xl-2">
-                                                    <img
-                                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                                                        className="img-fluid rounded-3" alt="Cotton T-shirt" />
-                                                </div>
-                                                <div className="col-md-3 col-lg-3 col-xl-3">
-                                                    <h6 className="text-muted">Shirt</h6>
-                                                    <h6 className="text-black mb-0">Cotton T-shirt</h6>
-                                                </div>
-                                                <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                    <button className="btn  px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                        <i className="ri-subtract-line"></i>
-                                                    </button>
 
-                                                    <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                        className="form-control form-control-sm" />
+                                            {
+                                                cartproduct.map((item, index) => {
 
-                                                    <button className="btn  px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                        <i className="ri-add-line"></i>
-                                                    </button>
-                                                </div>
-                                                <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                    <h6 className="mb-0">€ 44.00</h6>
-                                                </div>
-                                                <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <label className="text-muted" style={{ cursor: 'pointer' }}>
-                                                        <i className="ri-delete-bin-7-fill" style={{ marginRight: '5px' }}></i>
-                                                    </label>
-                                                </div>
+                                                    return (
 
-                                            </div>
+                                                        <div key={index} className="row mb-4 d-flex justify-content-between align-items-center">
+                                                            <div className="col-md-2 col-lg-2 col-xl-2">
+                                                                <img style={{ width: '100px', height: '100px' }}
+                                                                    src={item.image} alt='proimage' />
+                                                            </div>
+                                                            <div className="col-md-3 col-lg-3 col-xl-3">
+                                                                <h6 className="text-muted">Watch</h6>
+                                                                <h6 className="text-black mb-0">{item.name}</h6>
+                                                            </div>
+                                                            <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                                <button className="btn  px-2"
+                                                                >
+                                                                    <i className="ri-subtract-line"></i>
+                                                                </button>
 
-                                           
+                                                                <input id="form1" min="0" name="quantity" type="number"
+                                                                    className="form-control form-control-sm" />
+
+                                                                <button className="btn  px-2"
+                                                                >
+                                                                    <i className="ri-add-line"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                                <h6 className="mb-0">€ {item.price}</h6>
+                                                            </div>
+                                                            <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                                <label className="text-muted" style={{ cursor: 'pointer' }}>
+                                                                    <i onClick={() => (
+                                                                        deleteproduct(item._id,item.productId)
+                                                                    )} className="ri-delete-bin-7-fill" style={{ marginRight: '5px' }}></i>
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                    )
+                                                })
+
+                                            }
 
                                             <hr className="my-4" />
-
+                                            <ToastContainer />
                                             <div className="pt-2">
-                                                <h6 className="mb-0"><a href="#!" className="text-body"><i
-                                                    className="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                                                <h6 className="mb-0"><Link to='/' className="text-body"><i
+                                                    className="fas fa-long-arrow-alt-left me-2"></i>Back to shop</Link></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +134,7 @@ function Cartpage({cart}) {
                                             <div className="mb-5">
                                                 <div className="form-outline">
                                                     <input type="text" id="form3Examplea2" className="form-control form-control-lg" />
-                                                    <label className="form-label" for="form3Examplea2">Enter your code</label>
+                                                    <label className="form-label" htmlFor="form3Examplea2">Enter your code</label>
                                                 </div>
                                             </div>
 
@@ -113,6 +157,7 @@ function Cartpage({cart}) {
                 </div>
             </div>
         </section>
+
     )
 }
 
