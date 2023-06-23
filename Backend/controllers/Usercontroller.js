@@ -181,6 +181,9 @@ export default {
     },
     IncrementCount: async (req,res) => {
         const productId=req.params.id
+        const userId= req.body.userId;
+        const product = await User.findOne({ _id: userId }, { cart: { $elemMatch: {  productId : productId } } })
+        console.log(product,"quaantity");
         await Product.updateOne(
             { _id: productId },
             { $inc: { stock: 1 } }

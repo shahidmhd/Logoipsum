@@ -12,7 +12,7 @@ import { Getproduct } from '../apicalls/Users'
 
 const Products = ({ cart, setCart }) => {
     const [products, setproducts] = useState([]);
-    const [countRes,setCountRes] = useState(false)
+    const [countRes, setCountRes] = useState(false)
 
     const getCart = async () => {
         const response = await getCartCount();
@@ -20,9 +20,9 @@ const Products = ({ cart, setCart }) => {
     }
 
 
-    const  Decrementstock=async(productId)=>{
+    const Decrementstock = async (productId) => {
         await stockupdate(productId)
-     
+
         setCountRes(!countRes)
     }
 
@@ -62,7 +62,7 @@ const Products = ({ cart, setCart }) => {
     return (
         <>
             {/* heading of the component */}
-            <div className="mx-5 px-5">
+            <div className="mx-5 px-5 pt-4">
                 <div className="row">
                     <div className='d-flex justify-content-between'>
                         <div className="fs-3 fw-bolder" style={{ alignSelf: 'flex-start' }}>
@@ -101,7 +101,16 @@ const Products = ({ cart, setCart }) => {
                 })
                 }
             </div>
-            <ToastContainer />
+            <ToastContainer position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light" />
         </>
     )
 }

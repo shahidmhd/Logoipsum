@@ -16,13 +16,13 @@ function Navbar({ cart }) {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
-                            <h5 className="brand-name text-dark fs-3">logoipsum</h5>
+                            <h5 className="brand-name text-dark fs-3"><span className='me-3'><img src="/images/vector.png" alt="" srcset="" /><img src="/images/circle.png" alt="" srcset="" /></span>logoipsum</h5>
                         </div>
-                        <div className="col-md-5 my-auto ">
+                        <div className="col-md-5 my-auto">
                             <form role="search">
-                                <div className="input-group">
+                                <div className="input-group p-3">
                                     <input type="search" placeholder="Search your product" className="form-control" />
-                                    <button className="btn bg-white text-primary border">
+                                    <button className="btn bg-white border text-primary">
                                         <i className="ri-search-line"></i>
                                     </button>
                                 </div>
@@ -34,7 +34,7 @@ function Navbar({ cart }) {
                                     <Link className="nav-link" to='/cart'>
                                         <i className="ri-shopping-bag-line fs-4"></i>
                                         {cart > 0 && (
-                                            <span className="badge bg-danger align-middle ms-1">{cart}</span>
+                                            <span className="badge bg-primary align-middle ms-1">{cart}</span>
                                         )}
                                     </Link>
                                 </li>
@@ -57,6 +57,9 @@ function Navbar({ cart }) {
                                             navigate('/login')
                                         }} className="dropdown-item" ><i className="fa fa-sign-out"></i> Logout</Link></li>
                                     </ul>
+                                </li>
+                                <li className='nav-item'>
+                                <button style={{marginLeft:'10px',backgroundColor:'#00C6D7'}} className='btn text-white rounded shadow mt-2'>classified</button>
                                 </li>
                             </ul>
                         </div>

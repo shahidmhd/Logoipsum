@@ -8,7 +8,7 @@ function Footer() {
         <div className="row">
           <div className="col-lg-3 col-sm-6">
             <div className="single-box">
-              <h1>logoipsum</h1>
+              <h1><span className='me-1'><img src="/images/vector.png" alt="" srcset="" /><img src="/images/circle.png" alt="" srcset="" /></span> logoipsum</h1>
               <label style={{ color: '#8D8D8D' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </label>
               <div className="card-area">
                 <i className="ri-instagram-fill"></i>
@@ -67,7 +67,7 @@ function Footer() {
                   <div> <i className="ri-customer-service-2-line fs-1"></i></div>
                   <div className="d-block pt-2">
                     <div style={{ color: 'black' }}>Have any question ?</div>
-                    <p className='text-primary'>+98 579 567 677</p>
+                    <p className='text-primary'>+123 456 789</p>
                   </div>
                   <div className='pt-3 ps-3'>
                     <button className="btn btn-outline-primary">CHAT</button>

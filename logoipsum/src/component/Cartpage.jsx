@@ -18,14 +18,14 @@ function Cartpage() {
 
     }, [deleteItem])
 
- 
 
 
-    const incrementstock=async(productId)=>{
-           await incrementcount(productId)
+
+    const incrementstock = async (productId) => {
+        await incrementcount(productId)
     }
 
-    const deleteproduct = async (cartid,productId) => {
+    const deleteproduct = async (cartid, productId) => {
         const response = await deletecart(cartid)
         if (response.status) {
             incrementstock(productId)
@@ -75,7 +75,7 @@ function Cartpage() {
                                                                     <i className="ri-subtract-line"></i>
                                                                 </button>
 
-                                                               <label className='btn btn-outline-dark text-dark'>{item.quantity}</label>
+                                                                <label className='btn btn-outline-dark text-dark'>{item.quantity}</label>
 
                                                                 <button className="btn  px-2"
                                                                 >
@@ -88,7 +88,7 @@ function Cartpage() {
                                                             <div className="col-md-1 col-lg-1 col-xl-1 text-end">
                                                                 <label className="text-muted" style={{ cursor: 'pointer' }}>
                                                                     <i onClick={() => (
-                                                                        deleteproduct(item._id,item.productId)
+                                                                        deleteproduct(item._id, item.productId)
                                                                     )} className="ri-delete-bin-7-fill" style={{ marginRight: '5px' }}></i>
                                                                 </label>
                                                             </div>
@@ -100,7 +100,16 @@ function Cartpage() {
                                             }
 
                                             <hr className="my-4" />
-                                            <ToastContainer />
+                                            <ToastContainer position="top-left"
+                                                autoClose={3000}
+                                                hideProgressBar={false}
+                                                newestOnTop={false}
+                                                closeOnClick
+                                                rtl={false}
+                                                pauseOnFocusLoss
+                                                draggable
+                                                pauseOnHover
+                                                theme="light" />
                                             <div className="pt-2">
                                                 <h6 className="mb-0"><Link to='/' className="text-body"><i
                                                     className="fas fa-long-arrow-alt-left me-2"></i>Back to shop</Link></h6>
